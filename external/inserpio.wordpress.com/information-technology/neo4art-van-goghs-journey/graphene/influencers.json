@@ -1,0 +1,7 @@
+{
+	"query": "MATCH (artist:ARTIST {last_name: 'Van Gogh'})-[:MOVED_TO*]->(stage:STAGE)-[:IN]->(city:CITY)
+              OPTIONAL MATCH (stage)-[:WHERE_WAS_INFLUENCED_BY*]->(influencer:ARTIST)-[:BELONGS_TO*]->(art_movement:ART_MOVEMENT)
+              RETURN artist.first_name + ' ' + artist.last_name as artist, stage.from, stage.to, city.name, city.country, influencer.first_name + ' ' + influencer.last_name, collect(art_movement.name) as art_movements
+              ORDER BY stage.from",
+    "params": {}
+}
